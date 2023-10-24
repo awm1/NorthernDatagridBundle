@@ -46,11 +46,11 @@ class Entity extends Source
     public const DOT_DQL_ALIAS_PH   = '__dot__';
     public const COLON_DQL_ALIAS_PH = '__col__';
 
-    private EntityManager $manager;
+    protected EntityManager $manager;
 
-    private QueryBuilder $query;
+    protected QueryBuilder $query;
 
-    private QueryBuilder $querySelectfromSource;
+    protected QueryBuilder $querySelectfromSource;
 
     private string $class;
 
@@ -58,9 +58,9 @@ class Entity extends Source
 
     private ?string $managerName;
 
-    private Metadata $metadata;
+    protected Metadata $metadata;
 
-    private ClassMetadata $ormMetadata;
+    protected ClassMetadata $ormMetadata;
 
     private array $joins;
 
