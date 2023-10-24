@@ -12,6 +12,8 @@
 
 namespace APY\DataGridBundle\Grid\Export;
 
+use APY\DataGridBundle\Grid\Grid;
+
 /**
  * Delimiter-Separated Values.
  */
@@ -33,7 +35,7 @@ class DSVExport extends Export
         parent::__construct($title, $fileName, $params, $charset);
     }
 
-    public function computeData($grid)
+    public function computeData(Grid $grid): void
     {
         $data = $this->getFlatGridData($grid);
 
