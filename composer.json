@@ -26,12 +26,14 @@
         "symfony/framework-bundle": "^5.2|^6.2",
         "symfony/expression-language": "^5.2|^6.2",
         "symfony/phpunit-bridge": "^5.2|^6.2",
-        "phpunit/phpunit": "^9.5"
+        "phpunit/phpunit": "^9.5",
+        "phpoffice/phpspreadsheet": "^1.22",
+        "mpdf/mpdf": "^8.0"
     },
     "suggest": {
         "ext-intl": "Translate the grid",
         "ext-mbstring": "Convert your data with the right charset",
-        "PHPExcel": "Export the grid (Excel, HTML or PDF)"
+        "phpoffice/phpspreadsheet": "Export the grid (Excel, HTML or PDF)"
     },
     "autoload": {
         "psr-4": {
