@@ -546,7 +546,7 @@ class Entity extends Source
             //$hints[] = 'APY\DataGridBundle\Grid\Helper\ORMCountWalker';
             $countQuery->setHint(Query::HINT_CUSTOM_TREE_WALKERS, $hints);
         }
-        $countQuery->setFirstResult(null)->setMaxResults($maxResults);
+        $countQuery->setFirstResult(0)->setMaxResults($maxResults);
 
         try {
             $data  = $countQuery->getScalarResult();

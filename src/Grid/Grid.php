@@ -120,7 +120,7 @@ class Grid implements GridInterface
     private array $massActions = [];
 
     /**
-     * @var \APY\DataGridBundle\Grid\Action\RowAction[]
+     * @var \APY\DataGridBundle\Grid\Action\RowAction[][]
      */
     private array $rowActions = [];
 

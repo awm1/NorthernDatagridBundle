@@ -36,11 +36,11 @@ class ORMCountWalker extends TreeWalkerAdapter
     /**
      * Walks down a SelectStatement AST node, modifying it to retrieve a COUNT.
      *
-     * @param SelectStatement $AST
+     * @param SelectStatement $selectStatement
      *
      * @throws \RuntimeException
      */
-    public function walkSelectStatement(SelectStatement $AST): void
+    public function walkSelectStatement(SelectStatement $selectStatement): void
     {
         $rootComponents = [];
         foreach ($this->getQueryComponents() as $dqlAlias => $qComp) {
@@ -64,9 +64,9 @@ class ORMCountWalker extends TreeWalkerAdapter
         $pathExpression->type = PathExpression::TYPE_STATE_FIELD;
 
         // Remove the variables which are not used by other clauses
-        foreach ($AST->selectClause->selectExpressions as $key => $selectExpression) {
+        foreach ($selectStatement->selectClause->selectExpressions as $key => $selectExpression) {
             if ($selectExpression->fieldIdentificationVariable === null) {
-                unset($AST->selectClause->selectExpressions[$key]);
+                unset($selectStatement->selectClause->selectExpressions[$key]);
             } elseif ($selectExpression->expression instanceof PathExpression) {
                 $groupByClause[] = $selectExpression->expression;
             }
@@ -74,16 +74,16 @@ class ORMCountWalker extends TreeWalkerAdapter
 
         // Put the count expression in the first position
         $distinct = $this->_getQuery()->getHint(self::HINT_DISTINCT);
-        array_unshift($AST->selectClause->selectExpressions,
+        array_unshift($selectStatement->selectClause->selectExpressions,
             new SelectExpression(
                 new AggregateExpression('count', $pathExpression, $distinct), null
             )
         );
 
         $groupByClause[] = $pathExpression;
-        $AST->groupByClause = new \Doctrine\ORM\Query\AST\GroupByClause($groupByClause);
+        $selectStatement->groupByClause = new \Doctrine\ORM\Query\AST\GroupByClause($groupByClause);
 
         // ORDER BY is not needed, only increases query execution through unnecessary sorting.
-        $AST->orderByClause = null;
+        $selectStatement->orderByClause = null;
     }
 }

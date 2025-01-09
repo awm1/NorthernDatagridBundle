@@ -6,8 +6,8 @@ use PhpOffice\PhpSpreadsheet\Writer\Html;
 
 class PHPExcelHTMLExport extends PHPExcelExport
 {
-    protected $fileExtension = "html";
-    protected $mimeType = "text/html";
+    protected ?string $fileExtension = "html";
+    protected string $mimeType = "text/html";
 
     protected function getWriter(): Html
     {

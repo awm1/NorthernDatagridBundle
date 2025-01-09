@@ -23,9 +23,9 @@ use PhpOffice\PhpSpreadsheet\Writer\Xls;
  */
 class PHPExcelExport extends Export
 {
-    protected $fileExtension = 'xls';
+    protected ?string $fileExtension = 'xls';
 
-    protected $mimeType = 'application/vnd.ms-excel';
+    protected string $mimeType = 'application/vnd.ms-excel';
 
     protected Spreadsheet $objPHPExcel;
 
