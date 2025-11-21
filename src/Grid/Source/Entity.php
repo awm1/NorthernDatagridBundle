@@ -533,7 +533,7 @@ class Entity extends Source
             $rsm = new ResultSetMapping();
             $rsm->addScalarResult($this->getSQLResultCasing($platform, 'dctrn_count'), 'count');
 
-            $countQuery->setHint(Query::HINT_CUSTOM_OUTPUT_WALKER, 'Doctrine\ORM\Tools\Pagination\CountOutputWalker');
+            $countQuery->setHint(Query::HINT_CUSTOM_OUTPUT_WALKER, 'APY\DataGridBundle\Grid\Helper\CountOffsetLimitOutputWalker');
             $countQuery->setResultSetMapping($rsm);
         } else {
             $hints = $countQuery->getHint(Query::HINT_CUSTOM_TREE_WALKERS);
